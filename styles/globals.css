@@ -2,3 +2,7 @@
 .MuiButton-root {
   text-transform: none;
 }
+
+.bg-white {
+    background-color: #fff;
+}
