@@ -3,8 +3,8 @@ import type { AppProps } from "next/app";
 import { CacheProvider, EmotionCache, ThemeProvider } from "@emotion/react";
 import Head from "next/head";
 import CssBaseline from "@mui/material/CssBaseline";
-import theme from "../config/theme";
-import createEmotionCache from "../config/createEmotionCache";
+import theme from "../core/theme";
+import createEmotionCache from "../core/createEmotionCache";
 import SearchBar from "../components/SearchBar";
 import "material-symbols";
 

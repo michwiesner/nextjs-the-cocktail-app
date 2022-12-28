@@ -15,7 +15,7 @@ const DrinkCard = ({ image, name }: IDrinkCard) => {
         <Typography textAlign="center">
           <Image src={image} alt={name} width={200} height={200} />
         </Typography>
-        <Typography textAlign="center">{name}</Typography>
+        <Typography textAlign="center" color="secondary">{name}</Typography>
       </Button>
     </Grid>
   );

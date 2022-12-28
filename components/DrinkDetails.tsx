@@ -1,4 +1,4 @@
-import { Chip } from "@mui/material";
+import { Chip, IconButton } from "@mui/material";
 import {
   Avatar,
   Box,
@@ -7,6 +7,8 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import style from "../styles/Options.module.css";
+import { IDrinkDetail } from "../interfaces/drink";
 
 const DrinkDetails = ({
   strDrink,
@@ -17,35 +19,34 @@ const DrinkDetails = ({
   strInstructions,
   strDrinkThumb,
   strIngredients,
-}: any) => (
+}: IDrinkDetail) => (
   <Grid container justifyContent="center" padding={10}>
     <Grid item xs={12}>
-      <Typography variant="h4" marginBottom={5}>
-        {strDrink}
-      </Typography>
+      <Box display="flex" alignItems="center" marginBottom={5}>
+        <IconButton href="/">
+          <span className="material-symbols-rounded">keyboard_backspace</span>
+        </IconButton>
+        <Typography variant="h4">{strDrink}</Typography>
+      </Box>
     </Grid>
     <Grid item xs={4}>
-      <Avatar
-        src={strDrinkThumb}
-        sx={{ width: 280, height: 280 }}
-        variant="square"
-      />
+      <Avatar src={strDrinkThumb} className={style.img} variant="square" />
       <Box marginTop={3}>
         <Chip
           label={strCategory}
           color="info"
-          sx={{ marginRight: "0.625rem" }}
+          className={style.marginChip}
           variant="filled"
         />
         <Chip
           label={strGlass}
-          sx={{ marginRight: "0.625rem" }}
+          className={style.marginChip}
           color="info"
           variant="filled"
         />
         <Chip
           label={strAlcoholic}
-          sx={{ marginRight: "0.625rem" }}
+          className={style.marginChip}
           color="info"
           variant="filled"
         />
@@ -54,7 +55,7 @@ const DrinkDetails = ({
         <Box marginTop={3}>
           <Chip
             label={`${strTags}`}
-            sx={{ marginRight: "0.625rem" }}
+            className={style.marginChip}
             color="info"
             variant="filled"
           />
@@ -62,13 +63,13 @@ const DrinkDetails = ({
       )}
     </Grid>
     <Grid item xs={6}>
-      <Card sx={{ padding: "20px" }}>
+      <Card className={style.card}>
         <CardContent>
           <Typography variant="h4">Instructions</Typography>
           <Typography marginTop={3}>{strInstructions}</Typography>
         </CardContent>
       </Card>
-      <Card sx={{ padding: "20px", marginTop: "20px" }}>
+      <Card sx={{ marginTop: "20px" }} className={style.card}>
         <CardContent>
           <Typography variant="h4">Ingredients</Typography>
           <Box marginTop={3}>
@@ -78,7 +79,7 @@ const DrinkDetails = ({
                   <Chip
                     key={i}
                     label={ingredient}
-                    sx={{ marginRight: "0.625rem" }}
+                    className={style.marginChip}
                     color="info"
                     variant="filled"
                   />

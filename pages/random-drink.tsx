@@ -1,13 +1,11 @@
-import axios from "axios";
 import DrinkDetails from "../components/DrinkDetails";
-import { baseUrl } from "../config/api";
+import { baseUrl } from "../core/api";
 import { getMappedInfo } from "../lib/drink";
+import { IDrinkDetail } from "../interfaces/drink";
 
 export async function getStaticProps() {
-  const {
-    data: { drinks },
-  } = await axios.get(`${baseUrl}/random.php`);
-  
+  const { drinks } = await (await fetch(`${baseUrl}/random.php`)).json();
+
   return {
     props: {
       drink: getMappedInfo(drinks[0]),
@@ -15,6 +13,8 @@ export async function getStaticProps() {
   };
 }
 
-const randomDrink = ({ drink }: any) => <DrinkDetails {...drink} />;
+const randomDrink = ({ drink }: { drink: IDrinkDetail }) => (
+  <DrinkDetails {...drink} />
+);
 
 export default randomDrink;

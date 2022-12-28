@@ -2,10 +2,10 @@ import { Chip, Grid, Typography } from "@mui/material";
 import style from "../styles/Options.module.css";
 import { useRouter } from "next/router";
 
-const getTypeByTitle: any = {
+const getTypeByTitle: { [key: string]: string } = {
   Alcoholic: "alcohol",
   Categories: "category",
-  Ingredients: "ingrediente",
+  Ingredients: "ingredient",
 };
 
 const OptionList = ({ title, values }: { title: string; values: string[] }) => {

@@ -3,19 +3,18 @@ import styles from "../styles/Home.module.css";
 import { Box, Button, Typography } from "@mui/material";
 import OptionList from "../components/OptionList";
 import { useRouter } from "next/router";
-import { baseUrl } from "../config/api";
-
-const getMappedInfo = (array: any[], accesor: string) =>
-  array.map((object) => object[accesor]);
+import { baseUrl } from "../core/api";
+import { IHomeProps } from "../interfaces/home";
+import { getMappedInfo } from "../lib/home";
 
 export async function getStaticProps() {
-  const { drinks: ingredients }: any = await (
+  const { drinks: ingredients } = await (
     await fetch(`${baseUrl}/list.php?i=list`)
   ).json();
-  const { drinks: categories }: any = await (
+  const { drinks: categories } = await (
     await fetch(`${baseUrl}/list.php?c=list`)
   ).json();
-  const { drinks: alcoholic }: any = await (
+  const { drinks: alcoholic } = await (
     await fetch(`${baseUrl}/list.php?a=list`)
   ).json();
 
@@ -32,11 +31,7 @@ export default function Home({
   ingredients,
   categories,
   alcoholic,
-}: {
-  ingredients: string[];
-  categories: string[];
-  alcoholic: string[];
-}) {
+}: IHomeProps) {
   const { title, paddingContent, textCenter } = styles;
   const router = useRouter();
   return (

@@ -1,10 +1,10 @@
 import React from "react";
-import { COCKTAIL_API_BASE_URL } from "../utils/constants";
 import { GetServerSideProps } from "next";
 import { ISearch, IDrink } from "../interfaces/search";
-import { Box, Chip, Grid, Typography } from "@mui/material";
+import { Box, Chip, Grid, IconButton, Typography } from "@mui/material";
 import DrinkCard from "../components/DrinkCard";
 import { useRouter } from "next/router";
+import { baseUrl } from "../core/api";
 
 const Search = ({ drinks }: ISearch) => {
   const router = useRouter();
@@ -19,13 +19,16 @@ const Search = ({ drinks }: ISearch) => {
         marginBottom={6}
         gap={1}
       >
+        <IconButton href="/">
+          <span className="material-symbols-rounded">keyboard_backspace</span>
+        </IconButton>
         <Typography fontSize="20px">
           {query ? `Resultados de la búsqueda para: ` : `Filtro: `}
         </Typography>
         <Chip
-          color="primary"
+          color="info"
           label={query || category || ingredient || alcohol}
-          sx={{fontSize: "16px"}}
+          sx={{ fontSize: "16px" }}
         />
       </Box>
       <Grid container item justifyContent="center" rowGap={6}>
@@ -53,12 +56,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let response = {} as Response;
   if (hasFilter) {
     response = await fetch(
-      `${COCKTAIL_API_BASE_URL}/filter.php?${category ? `c=${category}&` : ""}${
+      `${baseUrl}/filter.php?${category ? `c=${category}&` : ""}${
         ingredient ? `i=${ingredient}&` : ""
       }${alcohol ? `a=${alcohol}` : ""}`
     );
   } else {
-    response = await fetch(`${COCKTAIL_API_BASE_URL}/search.php?s=${query}`);
+    response = await fetch(`${baseUrl}/search.php?s=${query}`);
   }
 
   const { drinks } = await response.json();

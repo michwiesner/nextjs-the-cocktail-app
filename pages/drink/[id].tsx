@@ -1,10 +1,12 @@
 import DrinkDetails from "../../components/DrinkDetails";
-import { baseUrl } from "../../config/api";
+import { baseUrl } from "../../core/api";
 import { getMappedInfo } from "../../lib/drink";
+import { IDrinkDetail } from "../../interfaces/drink";
+import { GetStaticPropsContext } from "next";
 
-export async function getStaticProps({ params }: any) {
+export async function getStaticProps({ params }: GetStaticPropsContext) {
   const { drinks }: any = await (
-    await fetch(`${baseUrl}/search.php?s=${params.id}`)
+    await fetch(`${baseUrl}/search.php?s=${params?.id}`)
   ).json();
 
   return { props: { drink: getMappedInfo(drinks[0]) } };
@@ -17,6 +19,8 @@ export async function getStaticPaths() {
   };
 }
 
-const Name = ({ drink }: any) => <DrinkDetails {...drink} />;
+const Name = ({ drink }: { drink: IDrinkDetail }) => (
+  <DrinkDetails {...drink} />
+);
 
 export default Name;

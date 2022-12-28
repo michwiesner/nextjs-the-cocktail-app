@@ -18,7 +18,7 @@ const SearchBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="secondary">
       <Toolbar>
         <Grid container>
           <Grid

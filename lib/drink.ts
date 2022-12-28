@@ -1,3 +1,5 @@
+import { IDrink, IDrinkDetail } from "../interfaces/drink";
+
 export const getMappedInfo = ({
   strDrink,
   strTags,
@@ -21,7 +23,7 @@ export const getMappedInfo = ({
   strIngredient13,
   strIngredient14,
   strIngredient15,
-}: any) => ({
+}: IDrink) => ({
   strDrink,
   strTags,
   strCategory,
@@ -46,4 +48,4 @@ export const getMappedInfo = ({
     strIngredient14,
     strIngredient15,
   ],
-});
+} as IDrinkDetail);
